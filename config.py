@@ -28,7 +28,7 @@ OWNER_USERNAME = getenv("OWNER_USERNAME", "lololo")
 
 # Vars For API End Pont.
 YTPROXY_URL = getenv("YTPROXY_URL", 'https://tgapi.xbitcode.com') ## xBit Music Endpoint.
-YT_API_KEY = getenv("YT_API_KEY" , 'xbit_08n9Qhhx9AoasnIu6bV_1QNcI6pVNqWt') ## Your API key like: xbit_10000000xx0233 Get from  https://t.me/tgmusic_apibot
+YT_API_KEY = getenv("YT_API_KEY" , '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') ## Your API key like: xbit_10000000xx0233 Get from  https://t.me/tgmusic_apibot
 
 
 
