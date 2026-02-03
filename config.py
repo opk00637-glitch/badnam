@@ -55,7 +55,7 @@ LOGGER_ID = int(getenv("LOGGER_ID", -1003670001038))
 
 PRIVACY_LINK = getenv("PRIVACY_LINK", "https://telegra.ph/Privacy-Policy-for-KRITIMUSIC-08-30")
 SUPPORT_CHANNEL = getenv("SUPPORT_CHANNEL", "https://t.me/kriti_update")
-SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/+8XQCCzEVYQY2NWJl")
+SUPPORT_CHAT = getenv("SUPPORT_CHAT", "https://t.me/kriti_supprot")
 
 # -------------------- [ LIMITS & TIME SETTINGS ] --------------------
 
