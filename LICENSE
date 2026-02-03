@@ -1,0 +1,35 @@
+## 🧾 Legal
+
+This project is licensed under the **MIT License**.
+
+You are free to:
+- Use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software  
+- Use the software for personal or commercial purposes  
+
+**Conditions:**
+- The original copyright notice and this permission notice must be included in all copies or substantial portions of the software.
+
+**Disclaimer:**
+This software is provided **"AS IS"**, without warranty of any kind.  
+The author is not liable for any damages or issues arising from the use of this project.
+
+See the [LICENSE](LICENSE) file for full license text.
+
+---
+
+## ❤️ Credits
+
+- **Project Owner:** Badnam Op  
+- **Maintainer:** badnam Op  
+- **Core Libraries & Tools:**
+  - Python
+  - Pyrogram
+  - PyTgCalls
+  - FFmpeg
+  - Open-source contributors
+
+Special thanks to all open-source developers whose libraries made this project possible.
+
+---
+
+© 2025 Karma Op. Released under the MIT License.
