@@ -57,7 +57,7 @@ class Helper(object):
 ᴜsᴀɢᴇ :- ʙᴏᴛ ᴜsᴇʀɴᴀᴍᴇ | ɪᴅ/ᴜsᴇʀɴᴀᴍᴇ | ᴛᴇxᴛ```
 
 
-**» єx :-** @NikkuTunebot` @badnam_xd I love You 😘`
+**» єx :-** @NikkuTunebot` @lll_BADNAM_BABY_llll I love You 😘`
 
 
 **❖ 𝐏ᴏᴡᴇʀᴇᴅ 𝖡ʏ » [˹ᴋɪʀᴛɪ ʙᴏᴛѕ˼](https://t.me/kriti_update)**
@@ -332,7 +332,7 @@ class Helper(object):
 ─────────────────────────
 ʙєsᴛ ᴧηᴅ ᴄʜєᴧᴘ ɪη ᴛєʟєɢʀᴧϻ 400-500+ ϻєϻʙєʀs ɪη σηє ᴘʀσϻσᴛɪση ɢυʀᴧηᴛєє...
 ─────────────────────────
-❍ ᴄσηᴛᴧᴄᴛ - [˹ᴋɪʀᴛɪ  ʙᴏᴛѕ˼](https://t.badnam_xd)
+❍ ᴄσηᴛᴧᴄᴛ - [˹ᴋɪʀᴛɪ  ʙᴏᴛѕ˼](https://t.lll_BADNAM_BABY_llll)
 ─────────────────────────**
 '''
     HELP_ABOUT = '''
@@ -371,11 +371,11 @@ class Helper(object):
 ● sᴜᴘᴘᴏʀᴛ ᴧʟʟ ᴛɪϻє sᴛᴧʏ ᴡɪᴛʜ ᴜs.
 ──────────────────────
 ❖ υᴘᴅᴧᴛєs ᴄʜᴧηηєʟ » [˹ᴋɪʀᴛɪ ʙᴏᴛѕ˼](https://t.me/kriti_update)
-❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ » [˹ᴋɪʀᴛɪ ᴜᴘᴅᴧᴛєs](https://t.me/+8XQCCzEVYQY2NWJl)
+❖ sυᴘᴘσʀᴛ ᴄʜᴧᴛ » [˹ᴋɪʀᴛɪ ᴜᴘᴅᴧᴛєs](https://t.me/kriti_supprot)
 ❖ ɢɪᴛ ʜᴜʙ ʟɪηᴋ » [тєᴧϻ-ᴋɪʀᴛɪ](github.com/Badnam019)
 ──────────────────────
 ➤ ʙσᴛ sᴛᴧᴛυs & ϻσʀє ʙσᴛs - [ᴄʟɪᴄᴋ ʜєʀє](https://t.me/kriti_update)
-➤ ᴘᴧɪᴅ ᴘʀσϻσᴛɪση :- [ᴄσηᴛᴧᴄᴛ ʜєʀє](https://t.me/badnam_xd)
+➤ ᴘᴧɪᴅ ᴘʀσϻσᴛɪση :- [ᴄσηᴛᴧᴄᴛ ʜєʀє](https://t.me/lll_BADNAM_BABY_llll)
 ──────────────────────**
 
 '''
