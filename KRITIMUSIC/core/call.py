@@ -1,12 +1,25 @@
+# =======================================================
+# Â©ï¸ 2025-26 All Rights Reserved by Aarumi Bot (karma) ðŸš€
+# This source code is under MIT License ðŸ“œ 
+# =======================================================
+
 import asyncio
 import os
 from datetime import datetime, timedelta
 from typing import Union
-from ntgcalls import ConnectionNotFound, TelegramServerError
+
 from pyrogram import Client
-from pyrogram.types import InlineKeyboardMarkup
-from pytgcalls import PyTgCalls, exceptions, types
-from pytgcalls.pytgcalls_session import PyTgCallsSession
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pytgcalls import PyTgCalls, StreamType
+from pytgcalls.exceptions import (
+    AlreadyJoinedError,
+    NoActiveGroupCall,
+    TelegramServerError,
+)
+from pytgcalls.types import Update
+from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
+from pytgcalls.types.input_stream.quality import HighQualityAudio, MediumQualityVideo
+from pytgcalls.types.stream import StreamAudioEnded
 
 import config
 from KRITIMUSIC import LOGGER, YouTube, app
@@ -264,4 +277,3 @@ class Call(PyTgCalls):
             await self.change_stream(client, update.chat_id)
 
 Miku = Call()
-
