@@ -7,7 +7,7 @@
     ─「 ᴅᴇᴩʟᴏʏ ᴏɴ ʜᴇʀᴏᴋᴜ 」─
 </h3>
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/yjee4247-code/badnam"> <img src="https://www.herokucdn.com/deploy/button.svg"></a></p>
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/opk00637-glitch/badnam"> <img src="https://www.herokucdn.com/deploy/button.svg"></a></p>
 
 <br />
 
