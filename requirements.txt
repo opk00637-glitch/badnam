@@ -56,4 +56,5 @@ googlesearch-python
 sympy
 PyGithub
 py-yt-search==0.5.2
+ntgcalls>=2.0.6
 
