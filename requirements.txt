@@ -37,9 +37,9 @@ spotipy
 tgcrypto
 telegraph
 unidecode
-yt-dlp
+yt-dlp[default]>=2025.11.12
 youtube-search
-py-yt-search
+youtube-search-python
 gtts
 git+https://github.com/AsmSafone/SafoneAPI
 lexica-api==1.5.1
@@ -55,4 +55,5 @@ bing_image_downloader
 googlesearch-python
 sympy
 PyGithub
+py-yt-search==0.5.2
 
