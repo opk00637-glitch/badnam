@@ -1,61 +1,56 @@
-# -----------------------------------------------
-# 🔸 StrangerMusic Project
-# 🔹 Developed & Maintained by: Shashank Shukla (https://github.com/itzshukla)
-# 📅 Copyright © 2022 – All Rights Reserved
-#
-# 📖 License:
-# This source code is open for educational and non-commercial use ONLY.
-# You are required to retain this credit in all copies or substantial portions of this file.
-# Commercial use, redistribution, or removal of this notice is strictly prohibited
-# without prior written permission from the author.
-#
-# ❤️ Made with dedication and love by ItzShukla
-# -----------------------------------------------
 import asyncio
 import os
 from datetime import datetime, timedelta
 from typing import Union
+
 from ntgcalls import ConnectionNotFound, TelegramServerError
 from pyrogram import Client
-from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pytgcalls import PyTgCalls, exceptions, types
 from pytgcalls.pytgcalls_session import PyTgCallsSession
+
 import config
 from KRITIMUSIC import LOGGER, YouTube, app
 from KRITIMUSIC.misc import db
-from KRITIMUSIC.utils.database import (
-    add_active_chat,
-    add_active_video_chat,
-    get_lang,
-    get_loop,
-    group_assistant,
-    is_autoend,
-    music_on,
-    remove_active_chat,
-    remove_active_video_chat,
-    set_loop,
-)
+from KRITIMUSIC.utils.database import (add_active_chat, add_active_video_chat,
+                                       get_lang, get_loop, group_assistant,
+                                       is_autoend, music_on,
+                                       remove_active_chat,
+                                       remove_active_video_chat, set_loop)
 from KRITIMUSIC.utils.exceptions import AssistantErr
-from KRITIMUSIC.utils.formatters import check_duration, seconds_to_min, speed_converter
+from KRITIMUSIC.utils.formatters import (check_duration, seconds_to_min,
+                                         speed_converter)
 from KRITIMUSIC.utils.inline.play import stream_markup
 from KRITIMUSIC.utils.stream.autoclear import auto_clean
-from KRITIMUSIC.utils.thumbnails import get_thumb as gen_thumb
+from KRITIMUSIC.utils.thumbnails import get_thumb
 from strings import get_string
+
+
+async def delete_old_message(chat_id: int):
+    try:
+        old = db.get(chat_id, [{}])[0].get("mystic")
+        if old:
+            await old.delete()
+    except:
+        pass
+
 
 autoend = {}
 counter = {}
+
 
 async def _clear_(chat_id: int):
     db[chat_id] = []
     await remove_active_video_chat(chat_id)
     await remove_active_chat(chat_id)
 
+
 class Call(PyTgCalls):
     def __init__(self):
         PyTgCallsSession.notice_displayed = True
 
         self.userbot1 = Client(
-            name="MikuAss1",
+            name="KanhaMusic1",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING1),
@@ -63,7 +58,7 @@ class Call(PyTgCalls):
         self.one = PyTgCalls(self.userbot1, cache_duration=100)
 
         self.userbot2 = Client(
-            name="MikuAss2",
+            name="KanhaMusic2",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING2),
@@ -71,7 +66,7 @@ class Call(PyTgCalls):
         self.two = PyTgCalls(self.userbot2, cache_duration=100)
 
         self.userbot3 = Client(
-            name="MikuAss3",
+            name="KanhaMusic3",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING3),
@@ -79,7 +74,7 @@ class Call(PyTgCalls):
         self.three = PyTgCalls(self.userbot3, cache_duration=100)
 
         self.userbot4 = Client(
-            name="MikuAss4",
+            name="KanhaMusic4",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING4),
@@ -87,7 +82,7 @@ class Call(PyTgCalls):
         self.four = PyTgCalls(self.userbot4, cache_duration=100)
 
         self.userbot5 = Client(
-            name="MikuAss5",
+            name="KanhaMusic5",
             api_id=config.API_ID,
             api_hash=config.API_HASH,
             session_string=str(config.STRING5),
@@ -113,6 +108,7 @@ class Call(PyTgCalls):
             ffmpeg_parameters=ffmpeg,
         )
 
+    
     async def _play_on_assistant(
         self,
         client: PyTgCalls,
@@ -134,21 +130,28 @@ class Call(PyTgCalls):
         except Exception:
             raise
 
+    
     async def pause_stream(self, chat_id: int):
+        await delete_old_message(chat_id)
         assistant = await group_assistant(self, chat_id)
         await assistant.pause(chat_id)
 
+    
     async def resume_stream(self, chat_id: int):
+        await delete_old_message(chat_id)
         assistant = await group_assistant(self, chat_id)
         await assistant.resume(chat_id)
 
+    
     async def stop_stream(self, chat_id: int):
+        await delete_old_message(chat_id)
         assistant = await group_assistant(self, chat_id)
         try:
             await _clear_(chat_id)
             await assistant.leave_call(chat_id, close=False)
         except Exception:
             pass
+
 
     async def stop_stream_force(self, chat_id: int):
         for string, client in [
@@ -169,6 +172,7 @@ class Call(PyTgCalls):
         except Exception:
             pass
 
+    
     async def speedup_stream(self, chat_id: int, file_path, speed, playing):
         assistant = await group_assistant(self, chat_id)
         if str(speed) != "1.0":
@@ -228,6 +232,7 @@ class Call(PyTgCalls):
             db[chat_id][0]["speed"] = speed
 
     async def force_stop_stream(self, chat_id: int):
+        await delete_old_message(chat_id)
         assistant = await group_assistant(self, chat_id)
         try:
             check = db.get(chat_id)
@@ -241,6 +246,7 @@ class Call(PyTgCalls):
         except Exception:
             pass
 
+    
     async def skip_stream(
         self,
         chat_id: int,
@@ -252,6 +258,7 @@ class Call(PyTgCalls):
         stream = self._build_stream(link, video=bool(video))
         await self._play_on_assistant(assistant, chat_id, stream)
 
+    
     async def seek_stream(self, chat_id, file_path, to_seek, duration, mode):
         assistant = await group_assistant(self, chat_id)
         ffmpeg = f"-ss {to_seek} -to {duration}"
@@ -263,16 +270,18 @@ class Call(PyTgCalls):
         )
         await self._play_on_assistant(assistant, chat_id, stream)
 
+    
     async def stream_call(self, link):
-        assistant = await group_assistant(self, config.LOG_GROUP_ID)
+        assistant = await group_assistant(self, config.LOGGER_ID)
         stream = self._build_stream(link, video=True)
-        await self._play_on_assistant(assistant, config.LOG_GROUP_ID, stream)
+        await self._play_on_assistant(assistant, config.LOGGER_ID, stream)
         await asyncio.sleep(0.2)
         try:
-            await assistant.leave_call(config.LOG_GROUP_ID, close=False)
+            await assistant.leave_call(config.LOGGER_ID, close=False)
         except Exception:
             pass
 
+    
     async def join_call(
         self,
         chat_id: int,
@@ -305,7 +314,9 @@ class Call(PyTgCalls):
             if users == 1:
                 autoend[chat_id] = datetime.now() + timedelta(minutes=1)
 
+    
     async def change_stream(self, client: PyTgCalls, chat_id: int):
+        await delete_old_message(chat_id)
         check = db.get(chat_id)
         popped = None
         loop = await get_loop(chat_id)
@@ -318,10 +329,52 @@ class Call(PyTgCalls):
             await auto_clean(popped)
             if not check:
                 await _clear_(chat_id)
+                try:
+                    buttons = InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
+                                    url=f"https://t.me/{app.username}?startgroup=true",
+                                ),
+                                InlineKeyboardButton(
+                                    "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
+                                ),
+                            ]
+                        ]
+                    )
+                    await app.send_message(
+                        chat_id,
+                        "**🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!**",
+                        reply_markup=buttons,
+                    )
+                except:
+                    pass
                 return await client.leave_call(chat_id, close=False)
         except Exception:
             try:
                 await _clear_(chat_id)
+                try:
+                    buttons = InlineKeyboardMarkup(
+                        [
+                            [
+                                InlineKeyboardButton(
+                                    "✙ ʌᴅᴅ ϻє вᴧʙʏ ✙",
+                                    url=f"https://t.me/{app.username}?startgroup=true",
+                                ),
+                                InlineKeyboardButton(
+                                    "⋞ ᴄʟᴏsє ⋟", callback_data="close_message"
+                                ),
+                            ]
+                        ]
+                    )
+                    await app.send_message(
+                        chat_id,
+                        "🎵 𝐓ʜᴇ 𝐐ᴜᴇᴜᴇ 𝐇ᴀs 𝐅ɪɴɪsʜᴇᴅ. 𝐔sᴇ /play 𝐓ᴏ 𝐀ᴅᴅ 𝐌ᴏʀᴇ 𝐒ᴏɴɢs!!",
+                        reply_markup=buttons,
+                    )
+                except:
+                    pass
                 return await client.leave_call(chat_id, close=False)
             except Exception:
                 return
@@ -356,11 +409,12 @@ class Call(PyTgCalls):
                     original_chat_id,
                     text=_["call_6"],
                 )
-            img = await gen_thumb(videoid)
+            img = await get_thumb(videoid)
             button = stream_markup(_, chat_id)
             run = await app.send_photo(
                 chat_id=original_chat_id,
                 photo=img,
+                has_spoiler=True,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
                     title[:23],
@@ -392,12 +446,13 @@ class Call(PyTgCalls):
                     original_chat_id,
                     text=_["call_6"],
                 )
-            img = await gen_thumb(videoid)
+            img = await get_thumb(videoid)
             button = stream_markup(_, chat_id)
             await mystic.delete()
             run = await app.send_photo(
                 chat_id=original_chat_id,
                 photo=img,
+                has_spoiler=True,
                 caption=_["stream_1"].format(
                     f"https://t.me/{app.username}?start=info_{videoid}",
                     title[:23],
@@ -422,6 +477,7 @@ class Call(PyTgCalls):
             run = await app.send_photo(
                 chat_id=original_chat_id,
                 photo=config.STREAM_IMG_URL,
+                has_spoiler=True,
                 caption=_["stream_2"].format(user),
                 reply_markup=InlineKeyboardMarkup(button),
             )
@@ -446,7 +502,7 @@ class Call(PyTgCalls):
                         else config.TELEGRAM_VIDEO_URL
                     ),
                     caption=_["stream_1"].format(
-                        config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
+                        config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
@@ -458,18 +514,19 @@ class Call(PyTgCalls):
                     chat_id=original_chat_id,
                     photo=config.SOUNCLOUD_IMG_URL,
                     caption=_["stream_1"].format(
-                        config.SUPPORT_GROUP, title[:23], check[0]["dur"], user
+                        config.SUPPORT_CHAT, title[:23], check[0]["dur"], user
                     ),
                     reply_markup=InlineKeyboardMarkup(button),
                 )
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "tg"
             else:
-                img = await gen_thumb(videoid)
+                img = await get_thumb(videoid)
                 button = stream_markup(_, chat_id)
                 run = await app.send_photo(
                     chat_id=original_chat_id,
                     photo=img,
+                    has_spoiler=True,
                     caption=_["stream_1"].format(
                         f"https://t.me/{app.username}?start=info_{videoid}",
                         title[:23],
@@ -481,6 +538,7 @@ class Call(PyTgCalls):
                 db[chat_id][0]["mystic"] = run
                 db[chat_id][0]["markup"] = "stream"
 
+    
     async def ping(self):
         pings = []
         if config.STRING1:
@@ -495,6 +553,7 @@ class Call(PyTgCalls):
             pings.append(self.five.ping)
         return str(round(sum(pings) / len(pings), 3)) if pings else "0"
 
+    
     async def start(self):
         LOGGER(__name__).info("Starting PyTgCalls Client...\n")
         if config.STRING1:
@@ -508,6 +567,7 @@ class Call(PyTgCalls):
         if config.STRING5:
             await self.five.start()
 
+    
     async def decorators(self):
         for string, client in [
             (config.STRING1, self.one),
@@ -518,6 +578,7 @@ class Call(PyTgCalls):
         ]:
             if not string:
                 continue
+
             @client.on_update()
             async def _update_handler(_, update: types.Update, _client=client):
                 if isinstance(update, types.StreamEnded):
@@ -530,5 +591,6 @@ class Call(PyTgCalls):
                         types.ChatUpdate.Status.CLOSED_VOICE_CHAT,
                     ]:
                         await self.stop_stream(update.chat_id)
+
 
 Miku = Call()
