@@ -11,7 +11,7 @@ motor
 pillow
 py-tgcalls
 pykeyboard
-git+https://github.com/KurimuzonAkuma/kurigram.git
+git+https://github.com/AsmSafone/SafoneAPI
 python-dotenv
 pyyaml
 requests
