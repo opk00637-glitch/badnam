@@ -39,7 +39,7 @@ telegraph
 unidecode
 yt-dlp
 youtube-search
-youtube-search-python
+py-yt-search
 gtts
 git+https://github.com/AsmSafone/SafoneAPI
 lexica-api==1.5.1
