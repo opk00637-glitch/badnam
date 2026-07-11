@@ -1,7 +1,7 @@
 aiofiles
 bard
 SpeechRecognition
-aiohttp
+aiohttp 
 asyncio
 deepai
 python-whois
@@ -14,7 +14,7 @@ pydub
 pycountry
 heroku3
 apscheduler
-motor
+motor 
 numpy
 pillow==9.5.0
 psutil
@@ -23,8 +23,7 @@ pyfiglet
 pytz
 future==0.18.3
 search_engine_parser
-py-tgcalls
-ntgcalls
+py-tgcalls==0.9.7
 pykeyboard
 pyshorteners
 #pyrogram==2.0.106
@@ -38,10 +37,9 @@ spotipy
 tgcrypto
 telegraph
 unidecode
-git+https://github.com/yt-dlp/yt-dlp.git
+yt-dlp
 youtube-search
 youtube-search-python
-py-yt-search
 gtts
 git+https://github.com/AsmSafone/SafoneAPI
 lexica-api==1.5.1
@@ -49,8 +47,12 @@ httpx
 gpytranslate
 openai==0.28.0
 pickledb
+python-telegram-bot
 pycryptodome
 opencv-python
+bing-image-urls
+bing_image_downloader
 googlesearch-python
 sympy
 PyGithub
+
