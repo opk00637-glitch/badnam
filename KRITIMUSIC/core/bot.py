@@ -16,7 +16,7 @@ import config
 from ..logging import LOGGER
 
 
-class Shivi(Client):
+class Miku(Client):
     def __init__(self):
         LOGGER(__name__).info(f"» sᴛᴀʀᴛɪɴɢ ʙᴏᴛ...")
         super().__init__(
